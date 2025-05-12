@@ -1,0 +1,9 @@
+<!-- filepath: d:\My papka\...Lab\Django_college\DW\app1\templates\generic_view.html -->
+{% extends "base.html" %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+<h1>{{ heading }}</h1>
+<button onclick="window.location.href='{% url 'home' %}'">Go Back to Home</button>
+{% endblock %}
