@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Product List</h1>
+<ul>
+    {% for product in products %}
+    <li>
+        <strong>{{ product.name }}</strong> - ${{ product.price }}<br>
+        <em>Category:</em> {{ product.category.name }}<br>
+        {% if product.is_available %}
+            <span style="color: green;">Available</span>
+        {% else %}
+            <span style="color: red;">Out of Stock</span>
+        {% endif %}
+        <br>
+        <small>SKU: {{ product.sku }}</small>
+    </li>
+    <hr>
+    {% endfor %}
+</ul>
+{% endblock %}

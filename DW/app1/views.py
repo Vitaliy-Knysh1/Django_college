@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.core.paginator import Paginator
-
+from .models import Product
 
 # Create your views here.
 
@@ -20,3 +20,7 @@ def view_four(request):
 
 def view_five(request):
     return render(request, 'generic_view.html', {'title': 'View Five', 'heading': 'This is View Five'})
+
+def product_list(request):
+    itms = Product.objects.all()
+    return render(request, 'items.html', {'products': products})
