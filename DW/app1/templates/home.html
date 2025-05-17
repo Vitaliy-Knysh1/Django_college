@@ -1,9 +1,15 @@
-<!-- filepath: d:\My papka\...Lab\Django_college\DW\app1\templates\home.html -->
 {% extends "base.html" %}
 
-{% block title %} Home Page {% endblock %}
-
 {% block content %}
-<h1>Welcome to the Handmade Goods Shop</h1>
-<p>This is the home page. Explore our collection of handmade products!</p>
+<h1>Hello from the home page!</h1>
+<ul>
+    {% for product in products %}
+        <li>
+            <strong>{{ product.name }}</strong> - ${{ product.price }}<br>
+            <em>{{ product.description }}</em>
+        </li>
+    {% empty %}
+        <li>No products available.</li>
+    {% endfor %}
+</ul>
 {% endblock %}

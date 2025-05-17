@@ -7,7 +7,8 @@ from .models import Product
 # Create your views here.
 
 def home(request):
-    return render(request, 'base.html')
+    products = Product.objects.all()
+    return render(request, 'home.html', {'products': products})
 
 def view_two(request):
     return render(request, 'generic_view.html', {'title': 'View Two', 'heading': 'This is View Two'})
@@ -23,4 +24,4 @@ def view_five(request):
 
 def product_list(request):
     itms = Product.objects.all()
-    return render(request, 'items.html', {'products': products})
+    return render(request, 'items.html', {'products': itms})
