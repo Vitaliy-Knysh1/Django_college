@@ -1,0 +1,108 @@
+.navbar,
+.navbar-nav,
+.nav-link,
+.navbar-brand {
+    font-size: 1em;
+    color: #000 !important;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 1em;
+    color: #000;
+    background: #86d9b8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Add a subtle white outline to all major text */
+
+body,
+.navbar,
+.navbar-nav,
+.nav-link,
+.navbar-brand,
+main,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+a {
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+
+.navbar-nav {
+    justify-content: center;
+    width: 100%;
+}
+
+.container-fluid {
+    justify-content: center !important;
+    display: flex;
+}
+
+main {
+    padding: 2rem;
+    flex: 1 0 auto;
+}
+
+
+/* Navbar centering and color */
+
+header,
+.navbar,
+footer {
+    background: transparent !important;
+    box-shadow: none;
+}
+
+.navbar,
+.navbar-nav,
+.nav-link,
+.navbar-brand {
+    color: #000 !important;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+
+
+/* Add a subtle border and background to product cards */
+
+.p-3.h-100 {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+
+/* Make footer darker and always at the bottom */
+
+.site-footer {
+    background: #388e6c !important;
+    /* much darker green */
+    color: #000 !important;
+    /* black text */
+    width: 100%;
+    text-shadow: none !important;
+    margin-top: auto;
+    position: relative;
+    left: 0;
+    bottom: 0;
+}
+
+.site-footer,
+.site-footer * {
+    text-shadow: none !important;
+}

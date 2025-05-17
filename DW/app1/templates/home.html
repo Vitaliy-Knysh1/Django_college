@@ -2,14 +2,20 @@
 
 {% block content %}
 <h1>Hello from the home page!</h1>
-<ul>
+<div class="container-fluid">
+  <div class="row">
     {% for product in products %}
-        <li>
-            <strong>{{ product.name }}</strong> - ${{ product.price }}<br>
-            <em>{{ product.description }}</em>
-        </li>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
+        <div class="p-3 h-100">
+          <strong>{{ product.name }}</strong> - ${{ product.price }}<br>
+          <em>{{ product.description }}</em>
+        </div>
+      </div>
     {% empty %}
-        <li>No products available.</li>
+      <div class="col-12">
+        <p>No products available.</p>
+      </div>
     {% endfor %}
-</ul>
+  </div>
+</div>
 {% endblock %}
