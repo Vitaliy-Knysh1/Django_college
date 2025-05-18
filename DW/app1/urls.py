@@ -8,4 +8,5 @@ urlpatterns = [
     path('view-four/', views.view_four, name='four'),
     path('view-five/', views.view_five, name='five'),
     path('products/<int:pk>/', views.product, name='product'),  # <-- FIXED LINE
+    path('order/<int:pk>/', views.order_product, name='order_product'),
 ]

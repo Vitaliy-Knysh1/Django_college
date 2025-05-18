@@ -8,7 +8,8 @@
       <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
         <div class="p-3 h-100">
           <strong>{{ product.name }}</strong> - ${{ product.price }}<br>
-          <em>{{ product.description }}</em>
+          <em>{{ product.description }}</em><br>
+          <span class="text-muted">В наявності: {{ product.stock }}</span>
           <br>
           <a class="btn btn-dark mt-2" href="{% url 'product' product.id %}">Переглянути товар</a>
         </div>

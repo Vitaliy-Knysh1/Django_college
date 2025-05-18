@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Order: {{ product.name }}</h2>
+<div class="row justify-content-start">
+  <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+    <form method="post" id="order-form" class="mt-4">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_first_name">Ім'я:</label>
+            <input type="text" name="first_name" maxlength="50" class="form-control" id="id_first_name" required>
+        </div>
+        <div class="form-group">
+            <label for="id_last_name">Прізвище:</label>
+            <input type="text" name="last_name" maxlength="50" class="form-control" id="id_last_name" required>
+        </div>
+        <div class="form-group">
+            <label for="id_email">Email:</label>
+            <input type="email" name="email" class="form-control" id="id_email" required>
+        </div>
+        <div class="form-group">
+            <label for="id_number_of_items">Кількість:</label>
+            <input type="number" name="number_of_items" min="1" class="form-control" id="id_number_of_items" required>
+        </div>
+        <button type="submit" class="btn btn-dark">Замовити</button>
+    </form>
+    <div class="mt-3">
+        <strong>Вартість: <span id="cost-counter">0.00</span> $</strong>
+    </div>
+  </div>
+</div>
+<script>
+    const price = {{ product.price|floatformat:2 }};
+    const qtyInput = document.getElementById('id_number_of_items');
+    const costCounter = document.getElementById('cost-counter');
+    function updateCost() {
+        let qty = parseInt(qtyInput.value) || 0;
+        costCounter.textContent = (qty * price).toFixed(2);
+    }
+    if (qtyInput) {
+        qtyInput.addEventListener('input', updateCost);
+        updateCost();
+    }
+</script>
+{% endblock %}

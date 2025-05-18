@@ -1,8 +1,8 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.core.paginator import Paginator
-from .models import Product
+from .models import Product, Order
+from .forms import OrderForm
 
 # Create your views here.
 
@@ -25,3 +25,24 @@ def view_four(request):
 
 def view_five(request):
     return render(request, 'generic_view.html', {'title': 'View Five', 'heading': 'This is View Five'})
+
+def order_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            number = form.cleaned_data['number_of_items']
+            # Only create order if enough stock
+            if product.stock >= number:
+                Order.objects.create(
+                    product=product,
+                    number_of_items=number
+                )
+                product.stock -= number
+                product.save()
+                return render(request, 'order_success.html', {'product': product})
+            else:
+                form.add_error('number_of_items', 'Not enough stock available.')
+    else:
+        form = OrderForm()
+    return render(request, 'order_form.html', {'form': form, 'product': product})

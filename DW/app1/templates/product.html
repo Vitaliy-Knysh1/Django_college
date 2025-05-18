@@ -32,7 +32,7 @@
         {% endif %}
         <br/><br/>
         <a href="{% url 'home' %}" class="btn btn-dark">Home</a>
-        <button type="button" class="btn btn-dark ml-2">Купити</button>
+        <a href="{% url 'order_product' product.id %}" class="btn btn-dark ml-2">Купити</a>
         </center>
       </div>
     </div>
