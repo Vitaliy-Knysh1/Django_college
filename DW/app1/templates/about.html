@@ -1,0 +1,26 @@
+{% extends "generic_view.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Про нас</h2>
+    <p>
+        Ласкаво просимо до <strong>Handmade Shop</strong>!<br>
+        Цей сайт був повністю створений мною самостійно — від дизайну до функціоналу.<br>
+        <span class="text-primary">Використані технології:</span>
+        <ul class="pl-4">
+            <li><span class="badge badge-secondary">HTML</span></li>
+            <li><span class="badge badge-secondary">CSS</span></li>
+            <li><span class="badge badge-secondary">JavaScript</span></li>
+            <li><span class="badge badge-secondary">Python</span></li>
+            <li><span class="badge badge-secondary">Django</span></li>
+        </ul>
+        Моя мета полягала в тому, щоб створити зручний і привабливий інтерфейс для користувачів, а також реалізувати функціонал,
+        який дозволяє легко переглядати товари та здійснювати покупки.<br>
+        Я сам розробив його зовнішній вигляд, реалізував систему товарів і навігацію, продумав структуру сторінок і адаптував усе для зручного користування.<br>
+        <em>Це мій власний проєкт, зроблений з нуля, і я пишаюся тим, що зміг зробити його якісно та красиво без сторонньої допомоги.</em>
+    </p>
+    <small class="text-muted" style="font-size: 70%;">cough cough</small>
+    <br>
+    {% block home_button %}{{ block.super }}{% endblock %}
+</div>
+{% endblock %}

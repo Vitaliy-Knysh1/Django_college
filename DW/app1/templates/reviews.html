@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Відгуки клієнтів</h2>
+    <form method="post" class="mb-4">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+        </div>
+        <div class="form-group">
+            {{ form.text.label_tag }}
+            <textarea 
+                name="text" 
+                id="id_text" 
+                class="form-control" 
+                rows="4" 
+                maxlength="400"
+                style="resize:vertical; max-height:200px;"
+                required
+            >{{ form.text.value|default_if_none:'' }}</textarea>
+            <small class="text-muted" id="char-count" style="float:left;">0 / 400</small>
+        </div>
+        <button type="submit" class="btn btn-dark">Залишити відгук</button>
+    </form>
+    <hr>
+    <ul class="list-unstyled">
+        {% for review in reviews %}
+            <li class="mb-3">
+                <strong>{{ review.name }}</strong> <span class="text-muted" style="font-size:80%;">{{ review.created_at|date:"d.m.Y H:i" }}</span><br>
+                {{ review.text|linebreaks }}
+            </li>
+        {% empty %}
+            <li>Ще немає відгуків.</li>
+        {% endfor %}
+    </ul>
+</div>
+<script>
+    const textarea = document.getElementById('id_text');
+    const charCount = document.getElementById('char-count');
+    function updateCharCount() {
+        charCount.textContent = textarea.value.length + ' / 400';
+    }
+    if (textarea) {
+        textarea.addEventListener('input', updateCharCount);
+        updateCharCount();
+    }
+</script>
+{% endblock %}

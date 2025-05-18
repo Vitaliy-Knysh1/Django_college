@@ -22,12 +22,18 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-    def __str__(self):
-        return self.name
-    
 class Order(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     number_of_items = models.PositiveIntegerField()
 
     def __str__(self):
         return f"{self.number_of_items} x {self.product.name}"
+
+class Review(models.Model):
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='reviews', null=True, blank=True)
+    name = models.CharField(max_length=50)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name}: {self.text[:30]}"

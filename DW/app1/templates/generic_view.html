@@ -1,9 +1,14 @@
 <!-- filepath: d:\My papka\...Lab\Django_college\DW\app1\templates\generic_view.html -->
 {% extends "base.html" %}
 
-{% block title %} {{ title }} {% endblock %}
-
 {% block content %}
-<h1>{{ heading }}</h1>
-<button onclick="window.location.href='{% url 'home' %}'">Go Back to Home</button>
+<h2>{{ heading }}</h2>
+<ul>
+  {% for product in products %}
+    <li>{{ product.name }} — ${{ product.price }}</li>
+  {% endfor %}
+</ul>
+{% block home_button %}
+<a href="{% url 'home' %}" class="btn btn-dark mt-3">На головну</a>
+{% endblock %}
 {% endblock %}

@@ -1,17 +1,34 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.core.paginator import Paginator
-from .models import Product, Order
-from .forms import OrderForm
+from .models import Product, Order, Review
+from .forms import OrderForm, ReviewForm
 
 # Create your views here.
 
-def product(request,pk):
-	product = Product.objects.get(id=pk)
-	return render(request, 'product.html', {'product':product})
+def product(request, pk):
+    product = Product.objects.get(pk=pk)
+    product_reviews = product.reviews.order_by('-created_at')
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.product = product
+            review.save()
+            return redirect('product', pk=product.pk)
+    else:
+        form = ReviewForm()
+    return render(request, 'product.html', {
+        'product': product,
+        'reviews': product_reviews,
+        'form': form,
+    })
 
 def home(request):
+    query = request.GET.get('q', '')
     products = Product.objects.all()
+    if query:
+        products = products.filter(name__icontains=query)
     return render(request, 'home.html', {'products': products})
 
 def view_two(request):
@@ -46,3 +63,20 @@ def order_product(request, pk):
     else:
         form = OrderForm()
     return render(request, 'order_form.html', {'form': form, 'product': product})
+
+def reviews(request):
+    reviews = Review.objects.filter(product__isnull=True).order_by('-created_at')
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('five')
+    else:
+        form = ReviewForm()
+    return render(request, 'reviews.html', {'reviews': reviews, 'form': form})
+
+def about(request):
+    return render(request, 'about.html')
+
+def faq(request):
+    return render(request, 'faq.html')
