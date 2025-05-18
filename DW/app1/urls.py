@@ -7,6 +7,5 @@ urlpatterns = [
     path('view-three/', views.view_three, name='three'),
     path('view-four/', views.view_four, name='four'),
     path('view-five/', views.view_five, name='five'),
-    path('products/', views.product_list, name='product_list'),
+    path('products/<int:pk>/', views.product, name='product'),  # <-- FIXED LINE
 ]
-# This code defines the URL patterns for the app1 Django application.

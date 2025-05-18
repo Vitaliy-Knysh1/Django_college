@@ -24,7 +24,7 @@ body {
 }
 
 
-/* Add a subtle white outline to all major text */
+/* Remove white outline from all text on the website */
 
 body,
 .navbar,
@@ -41,7 +41,7 @@ h6,
 p,
 li,
 a {
-    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+    text-shadow: none !important;
 }
 
 .navbar-nav {

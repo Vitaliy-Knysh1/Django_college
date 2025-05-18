@@ -9,6 +9,8 @@
         <div class="p-3 h-100">
           <strong>{{ product.name }}</strong> - ${{ product.price }}<br>
           <em>{{ product.description }}</em>
+          <br>
+          <a class="btn btn-dark mt-2" href="{% url 'product' product.id %}">Переглянути товар</a>
         </div>
       </div>
     {% empty %}
