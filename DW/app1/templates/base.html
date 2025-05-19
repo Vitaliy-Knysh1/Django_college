@@ -25,16 +25,19 @@
                 <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'two' %}">Про нас</a>
+                            <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Головна</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#contactModal">Контакт</a>
+                            <a class="nav-link {% if request.resolver_match.url_name == 'two' %}active{% endif %}" href="{% url 'two' %}">Про нас</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'four' %}">FAQ</a>
+                            <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="#" data-toggle="modal" data-target="#contactModal">Контакт</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'five' %}">Відгуки</a>
+                            <a class="nav-link {% if request.resolver_match.url_name == 'four' %}active{% endif %}" href="{% url 'four' %}">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'five' %}active{% endif %}" href="{% url 'five' %}">Відгуки</a>
                         </li>
                     </ul>
                     <!-- Add search form here -->

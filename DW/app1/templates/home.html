@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Вітаємо на головній сторінці</h1>
 <div class="container-fluid">
-  <div class="row">
+  <div class="row" id="product-list">
     {% for product in products %}
       <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
         <div class="p-3 h-100">
@@ -13,10 +13,6 @@
           <br>
           <a class="btn btn-dark mt-2" href="{% url 'product' product.id %}">Переглянути товар</a>
         </div>
-      </div>
-    {% empty %}
-      <div class="col-12">
-        <p>No products available.</p>
       </div>
     {% endfor %}
   </div>
