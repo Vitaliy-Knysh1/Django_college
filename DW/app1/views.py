@@ -44,25 +44,19 @@ def view_five(request):
     return render(request, 'generic_view.html', {'title': 'View Five', 'heading': 'This is View Five'})
 
 def order_product(request, pk):
-    product = get_object_or_404(Product, pk=pk)
+    product = Product.objects.get(pk=pk)
     if request.method == 'POST':
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            number = form.cleaned_data['number_of_items']
-            # Only create order if enough stock
-            if product.stock >= number:
-                Order.objects.create(
-                    product=product,
-                    number_of_items=number
-                )
-                product.stock -= number
-                product.save()
-                return render(request, 'order_success.html', {'product': product})
-            else:
-                form.add_error('number_of_items', 'Not enough stock available.')
-    else:
-        form = OrderForm()
-    return render(request, 'order_form.html', {'form': form, 'product': product})
+        # Use POST data directly since you use a manual form
+        Order.objects.create(
+            product=product,
+            number_of_items=request.POST['number_of_items'],
+            first_name=request.POST['first_name'],
+            last_name=request.POST['last_name'],
+            email=request.POST['email'],
+            card_number=request.POST['card_number'],
+        )
+        return render(request, 'order_success.html', {'product': product})
+    return render(request, 'order_form.html', {'product': product})
 
 def reviews(request):
     reviews = Review.objects.filter(product__isnull=True).order_by('-created_at')

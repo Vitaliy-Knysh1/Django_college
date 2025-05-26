@@ -7,14 +7,15 @@
 <div class="card mb-3">
   <div class="row g-0">
     <div class="col-md-4 d-flex align-items-center justify-content-center">
-      <h2 class="card-title">{{ product.name }}</h2>
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid mb-2" style="max-height:220px;">
+      {% endif %}
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <center>
-        <br/>
+        <h2 class="card-title">{{ product.name }}</h2>
         <p class="card-text justified">{{ product.description }}</p>
-        
+        <center>
         {% if product.is_sale %}
         <div class="d-flex justify-content-center small text-warning mb-2">
             <div class="bi-star-fill">  </div>

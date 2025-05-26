@@ -18,6 +18,7 @@ class Product(models.Model):
     sku = models.CharField(max_length=50, unique=True, default='SKU0000')  # Default SKU
     created_at = models.DateTimeField(auto_now_add=True)  # Automatically set when created
     updated_at = models.DateTimeField(auto_now=True)  # Automatically updated on save
+    image = models.ImageField(upload_to='product_images/', null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -25,9 +26,14 @@ class Product(models.Model):
 class Order(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     number_of_items = models.PositiveIntegerField()
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField()
+    card_number = models.CharField(max_length=19)  # Add this line
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.number_of_items} x {self.product.name}"
+        return f"{self.number_of_items} x {self.product.name} for {self.first_name} {self.last_name}"
 
 class Review(models.Model):
     product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='reviews', null=True, blank=True)
